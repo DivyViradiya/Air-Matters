@@ -154,10 +154,6 @@ export default function AirQualitySection() {
 
   return (
     <section className="py-12 bg-background relative overflow-hidden font-lexend transition-colors duration-500">
-      {/* Background Technical Layer */}
-      <div className="absolute inset-0 z-0 opacity-[0.05] dark:opacity-[0.03] pointer-events-none text-foreground" 
-           style={{ backgroundImage: 'linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
-      
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         {/* Header: Intelligence Status */}

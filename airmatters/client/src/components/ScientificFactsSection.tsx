@@ -108,10 +108,6 @@ export default function ScientificFactsSection() {
 
   return (
     <section className="py-16 bg-background relative overflow-hidden font-lexend">
-      {/* Background Grid Pattern */}
-      <div className="absolute inset-0 opacity-[0.02] pointer-events-none" 
-           style={{ backgroundImage: 'linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
-
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         {/* Section Header */}

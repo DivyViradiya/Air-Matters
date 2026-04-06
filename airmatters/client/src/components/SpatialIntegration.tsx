@@ -81,19 +81,10 @@ export default function SpatialIntegration() {
                 className={`absolute inset-0 bg-gradient-to-br ${useCase.bgGradient} transition-colors duration-1000`}
               />
             );
-          })}
-          
-          {/* Constant Technical Grid */}
-          <div 
-            className="absolute inset-0 opacity-[0.02] dark:opacity-[0.04]" 
-            style={{ 
-              backgroundImage: `linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)`,
-              backgroundSize: '60px 60px'
-            }} 
-          />
-        </div>
+          </motion.div>
+          </div>
 
-        {/* --- CONTENT LAYOUT --- */}
+          {/* --- CONTENT LAYOUT --- */}
         <div className="relative w-full max-w-[120rem] h-full flex flex-col px-6 lg:px-20 py-24">
           
           {/* Top Header Row */}

@@ -291,10 +291,6 @@ export default function HowItWorksSection() {
   if (isMobile) {
     return (
       <section className="py-12 bg-background relative overflow-hidden font-lexend transition-colors duration-500">
-        {/* Background Technical Grid */}
-        <div className="absolute inset-0 z-0 opacity-[0.05] dark:opacity-[0.03] pointer-events-none text-foreground" 
-             style={{ backgroundImage: 'linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-
         <div className="max-w-7xl mx-auto px-6 relative z-10 space-y-10">
           
           {/* Mobile Header */}
@@ -389,12 +385,6 @@ export default function HowItWorksSection() {
     <section ref={containerRef} className="relative h-[400vh] bg-background font-lexend selection:bg-primary selection:text-white transition-colors duration-500">
       <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-start overflow-hidden pt-32 pb-24">
         
-        <div className="absolute inset-0 opacity-[0.05] dark:opacity-[0.03] pointer-events-none text-foreground" 
-             style={{ 
-               backgroundImage: 'linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)', 
-               backgroundSize: '40px 40px' 
-             }} 
-        />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,hsl(var(--background))_80%)] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-6 w-full relative z-10 flex flex-col h-full">
