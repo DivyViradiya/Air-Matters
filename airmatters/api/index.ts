@@ -1,0 +1,1 @@
+import { app } from `\"../server/app.js`\";`nimport { registerRoutes } from `\"../server/routes.js`\";`n`n// Initialize routes (Auth and API)`nregisterRoutes(app);`n`nexport default app;
