@@ -82,7 +82,7 @@ export default function HeroSection() {
           </motion.div>
 
           {/* Professional Heading Block */}
-          <div className="relative z-10 mt-8 text-center w-full">
+          <div className="relative z-10 mt-6 text-center w-full">
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -99,7 +99,7 @@ export default function HeroSection() {
             {/* Dynamic Metric Card */}
             <motion.div 
               style={{ opacity: infoOpacity }}
-              className="mt-10 border border-border rounded-[1.25rem] overflow-hidden bg-card/50 backdrop-blur-md shadow-sm"
+              className="mt-6 border border-border rounded-[1.25rem] overflow-hidden bg-card/50 backdrop-blur-md shadow-sm"
             >
               <div className="grid grid-cols-2 divide-x divide-border">
                 <div className="p-5 text-left flex flex-col justify-center">
@@ -122,7 +122,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="mt-6"
+              className="mt-4"
             >
               <Link href="/products">
                 <button className="w-full py-[1.125rem] bg-foreground text-background rounded-[1.25rem] font-black text-[11px] uppercase tracking-[0.3em] flex items-center justify-center gap-3 shadow-xl active:scale-95 transition-all">
