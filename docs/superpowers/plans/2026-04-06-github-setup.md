@@ -85,22 +85,57 @@ Expected: "Initialized empty Git repository"
 
 Run: `git remote add origin https://github.com/DivyViradiya/Air-Matters.git`
 
-### Task 2: Initial Commit and Push
+### Task 3: Vercel Deployment Setup (Target: airmatters.vercel.app)
 
-- [ ] **Step 1: Stage all files**
+**Files:**
+- Create: `airmatters/vercel.json`
+- Create: `airmatters/api/index.ts` (Serverless Function)
+
+- [ ] **Step 1: Create vercel.json in airmatters directory**
+
+```json
+{
+  "buildCommand": "npm run build:client",
+  "outputDirectory": "dist/public",
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/index.ts"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
+```
+
+- [ ] **Step 2: Create Vercel entry point (airmatters/api/index.ts)**
+
+```typescript
+import { app } from "../server/app.js";
+import { registerRoutes } from "../server/routes.js";
+
+// Initialize routes (Auth and API)
+// We don't need the return httpServer on Vercel
+registerRoutes(app);
+
+export default app;
+```
+
+- [ ] **Step 3: Link project to Vercel and name it 'airmatters'**
+
+Run: `vercel link --repo --scope divya-viradiyas-projects` (in `airmatters` dir)
+Follow prompts to link to a new project named `airmatters`.
+
+- [ ] **Step 4: Set DATABASE_URL on Vercel**
+
+Run: `vercel env add DATABASE_URL production --scope divya-viradiyas-projects`
+Run: `vercel env add DATABASE_URL preview --scope divya-viradiyas-projects`
+(When prompted, enter your Supabase connection string)
+
+- [ ] **Step 5: Deploy to Vercel**
 
 Run: `git add .`
-
-- [ ] **Step 2: Verify staged files**
-
-Run: `git status`
-Check if any sensitive files or `node_modules` are accidentally staged.
-
-- [ ] **Step 3: Commit files**
-
-Run: `git commit -m "initial commit: air matters project setup"`
-
-- [ ] **Step 4: Push to GitHub**
-
-Run: `git branch -M main`
-Run: `git push -u origin main`
+Run: `git commit -m "deploy: vercel configuration for airmatters.vercel.app"`
+Run: `git push`
