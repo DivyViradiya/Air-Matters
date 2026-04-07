@@ -78,7 +78,7 @@ const FAQItem = ({ q, a, isOpen, onClick }: { q: string, a: string, isOpen: bool
           {q}
         </span>
         <div className={cn(
-          "w-8 h-8 rounded-full border border-border flex items-center justify-center transition-all duration-500",
+          "w-8 h-8 shrink-0 rounded-full border border-border flex items-center justify-center transition-all duration-500",
           isOpen ? "rotate-180 bg-primary border-primary text-white" : "group-hover:border-primary/50"
         )}>
           <ChevronDown className="w-4 h-4" />

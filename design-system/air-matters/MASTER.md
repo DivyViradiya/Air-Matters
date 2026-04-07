@@ -7,8 +7,8 @@
 ---
 
 **Project:** Air Matters
-**Generated:** 2026-04-05 17:00:33
-**Category:** Service Landing Page
+**Generated:** 2026-04-07 09:51:44
+**Category:** Luxury/Premium Brand
 
 ---
 
@@ -18,24 +18,24 @@
 
 | Role | Hex | CSS Variable |
 |------|-----|--------------|
-| Primary | `#0EA5E9` | `--color-primary` |
-| Secondary | `#38BDF8` | `--color-secondary` |
-| CTA/Accent | `#F97316` | `--color-cta` |
-| Background | `#F0F9FF` | `--color-background` |
-| Text | `#0C4A6E` | `--color-text` |
+| Primary | `#1C1917` | `--color-primary` |
+| Secondary | `#44403C` | `--color-secondary` |
+| CTA/Accent | `#CA8A04` | `--color-cta` |
+| Background | `#FAFAF9` | `--color-background` |
+| Text | `#0C0A09` | `--color-text` |
 
-**Color Notes:** Sky blue trust + warm CTA
+**Color Notes:** Premium black + gold accent
 
 ### Typography
 
-- **Heading Font:** Lora
-- **Body Font:** Raleway
-- **Mood:** calm, wellness, health, relaxing, natural, organic
-- **Google Fonts:** [Lora + Raleway](https://fonts.google.com/share?selection.family=Lora:wght@400;500;600;700|Raleway:wght@300;400;500;600;700)
+- **Heading Font:** Bodoni Moda
+- **Body Font:** Jost
+- **Mood:** luxury, minimalist, high-end, sophisticated, refined, premium
+- **Google Fonts:** [Bodoni Moda + Jost](https://fonts.google.com/share?selection.family=Bodoni+Moda:wght@400;500;600;700|Jost:wght@300;400;500;600;700)
 
 **CSS Import:**
 ```css
-@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500;600;700&family=Jost:wght@300;400;500;600;700&display=swap');
 ```
 
 ### Spacing Variables
@@ -68,7 +68,7 @@
 ```css
 /* Primary Button */
 .btn-primary {
-  background: #F97316;
+  background: #CA8A04;
   color: white;
   padding: 12px 24px;
   border-radius: 8px;
@@ -85,8 +85,8 @@
 /* Secondary Button */
 .btn-secondary {
   background: transparent;
-  color: #0EA5E9;
-  border: 2px solid #0EA5E9;
+  color: #1C1917;
+  border: 2px solid #1C1917;
   padding: 12px 24px;
   border-radius: 8px;
   font-weight: 600;
@@ -99,7 +99,7 @@
 
 ```css
 .card {
-  background: #F0F9FF;
+  background: #FAFAF9;
   border-radius: 12px;
   padding: 24px;
   box-shadow: var(--shadow-md);
@@ -125,9 +125,9 @@
 }
 
 .input:focus {
-  border-color: #0EA5E9;
+  border-color: #1C1917;
   outline: none;
-  box-shadow: 0 0 0 3px #0EA5E920;
+  box-shadow: 0 0 0 3px #1C191720;
 }
 ```
 
@@ -153,28 +153,28 @@
 
 ## Style Guidelines
 
-**Style:** Exaggerated Minimalism
+**Style:** Liquid Glass
 
-**Keywords:** Bold minimalism, oversized typography, high contrast, negative space, loud minimal, statement design
+**Keywords:** Flowing glass, morphing, smooth transitions, fluid effects, translucent, animated blur, iridescent, chromatic aberration
 
-**Best For:** Fashion, architecture, portfolios, agency landing pages, luxury brands, editorial
+**Best For:** Premium SaaS, high-end e-commerce, creative platforms, branding experiences, luxury portfolios
 
-**Key Effects:** font-size: clamp(3rem 10vw 12rem), font-weight: 900, letter-spacing: -0.05em, massive whitespace
+**Key Effects:** Morphing elements (SVG/CSS), fluid animations (400-600ms curves), dynamic blur (backdrop-filter), color transitions
 
 ### Page Pattern
 
-**Pattern Name:** Scroll-Triggered Storytelling
+**Pattern Name:** App Store Style Landing
 
-- **Conversion Strategy:** Narrative increases time-on-page 3x. Use progress indicator. Mobile: simplify animations.
-- **CTA Placement:** End of each chapter (mini) + Final climax CTA
-- **Section Order:** 1. Intro hook, 2. Chapter 1 (problem), 3. Chapter 2 (journey), 4. Chapter 3 (solution), 5. Climax CTA
+- **Conversion Strategy:** Show real screenshots. Include ratings (4.5+ stars). QR code for mobile. Platform-specific CTAs.
+- **CTA Placement:** Download buttons prominent (App Store + Play Store) throughout
+- **Section Order:** 1. Hero with device mockup, 2. Screenshots carousel, 3. Features with icons, 4. Reviews/ratings, 5. Download CTAs
 
 ---
 
 ## Anti-Patterns (Do NOT Use)
 
-- ❌ Complex navigation
-- ❌ Hidden contact info
+- ❌ Cheap visuals
+- ❌ Fast animations
 
 ### Additional Forbidden Patterns
 

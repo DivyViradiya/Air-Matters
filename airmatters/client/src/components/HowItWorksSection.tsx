@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring, AnimatePresence, useMotionValueEvent } from "framer-motion";
 import { Search } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -265,6 +265,107 @@ const ReactorSchematic = ({ stage }: { stage: number }) => {
   );
 };
 
+const BioPorthole = ({ stage }: { stage: number }) => {
+  const color = stage === 2 ? "#0EA5E9" : "#10B981";
+  
+  return (
+    <div className="relative w-72 h-72 mx-auto">
+      {/* Floating Labels (Desktop-style for mobile) */}
+      <div className="absolute inset-0 z-30 pointer-events-none">
+        {/* Phase 1 Label */}
+        <motion.div 
+          animate={{ opacity: stage === 1 ? 1 : 0.2, x: stage === 1 ? 0 : -10 }}
+          className="absolute -bottom-4 -left-8 text-left space-y-1"
+        >
+          <div className="flex items-center gap-2">
+            <div className={cn("w-1 h-1 rounded-full", stage === 1 ? "bg-primary animate-pulse" : "bg-muted-foreground/30")} />
+            <span className={cn("font-mono text-[7px] font-black uppercase tracking-widest", stage === 1 ? "text-foreground" : "text-muted-foreground/40")}>Inlet_Vortex</span>
+          </div>
+          <div className="text-[6px] font-mono text-primary/60 font-bold uppercase tracking-tight pl-3">8.4 m/s // Active</div>
+        </motion.div>
+
+        {/* Phase 2 Label */}
+        <motion.div 
+          animate={{ opacity: stage === 2 ? 1 : 0.2, x: stage === 2 ? 0 : 10 }}
+          className="absolute top-1/2 -right-12 -translate-y-1/2 text-right space-y-1"
+        >
+          <div className="flex items-center justify-end gap-2">
+            <span className={cn("font-mono text-[7px] font-black uppercase tracking-widest", stage === 2 ? "text-foreground" : "text-muted-foreground/40")}>Bio_Scrubber</span>
+            <div className={cn("w-1 h-1 rounded-full", stage === 2 ? "bg-sky-500 animate-pulse" : "bg-muted-foreground/30")} />
+          </div>
+          <div className="text-[6px] font-mono text-sky-500/60 font-bold uppercase tracking-tight pr-3">99.98% Efficiency</div>
+        </motion.div>
+
+        {/* Phase 3 Label */}
+        <motion.div 
+          animate={{ opacity: stage === 3 ? 1 : 0.2, y: stage === 3 ? 0 : -10 }}
+          className="absolute -top-6 left-1/2 -translate-x-1/2 text-center space-y-1"
+        >
+          <div className="flex items-center justify-center gap-2">
+            <div className={cn("w-1 h-1 rounded-full", stage === 3 ? "bg-emerald-500 animate-pulse" : "bg-muted-foreground/30")} />
+            <span className={cn("font-mono text-[7px] font-black uppercase tracking-widest", stage === 3 ? "text-foreground" : "text-muted-foreground/40")}>O2_Emission</span>
+          </div>
+          <div className="text-[6px] font-mono text-emerald-500/60 font-bold uppercase tracking-tight">99.8% Purity // SAT_ON</div>
+        </motion.div>
+      </div>
+
+      {/* Outer Glass Ring */}
+      <div className="absolute inset-0 rounded-full border-[0.5px] border-foreground/10 bg-white/5 backdrop-blur-2xl shadow-inner shadow-white/5" />
+      
+      {/* Animated Liquid Content */}
+      <div className="absolute inset-4 rounded-full overflow-hidden bg-background/40 border border-white/5">
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.1, 1],
+            rotate: [0, 90, 180, 270, 360],
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute inset-0 opacity-40"
+        >
+          <svg viewBox="0 0 200 200" className="w-full h-full">
+            <motion.path
+              animate={{
+                d: stage === 1 
+                  ? "M100,20 C140,20 180,60 180,100 C180,140 140,180 100,180 C60,180 20,140 20,100 C20,60 60,20 100,20"
+                  : stage === 2
+                  ? "M100,30 C150,30 170,70 170,100 C170,130 150,170 100,170 C50,170 30,130 30,100 C30,70 50,30 100,30"
+                  : "M100,10 C160,10 190,60 190,100 C190,140 160,190 100,190 C40,190 10,140 10,100 C10,60 40,10 100,10"
+              }}
+              fill={color}
+              className="transition-colors duration-1000"
+            />
+          </svg>
+        </motion.div>
+
+        {/* Bubbles */}
+        <AnimatePresence>
+          {[...Array(stage === 3 ? 15 : 8)].map((_, i) => (
+            <motion.div
+              key={i}
+              initial={{ y: 200, x: 40 + Math.random() * 120, opacity: 0 }}
+              animate={{ 
+                y: -20, 
+                opacity: [0, 1, 0],
+                x: 40 + Math.random() * 120 + Math.sin(i) * 20
+              }}
+              transition={{ 
+                duration: 2 + Math.random() * 2, 
+                repeat: Infinity,
+                delay: Math.random() * 5
+              }}
+              className="absolute w-1 h-1 rounded-full bg-white/40 blur-[0.5px]"
+            />
+          ))}
+        </AnimatePresence>
+      </div>
+
+      {/* Internal Glare */}
+      <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-white/10 via-transparent to-transparent pointer-events-none" />
+      <div className="absolute top-4 left-1/4 w-1/2 h-1/4 bg-white/5 rounded-full blur-xl transform -rotate-12 pointer-events-none" />
+    </div>
+  );
+};
+
 export default function HowItWorksSection() {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -273,108 +374,161 @@ export default function HowItWorksSection() {
   });
 
   const [activeStage, setActiveStage] = useState(1);
+  const [isMobile, setIsMobile] = useState(false);
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
+  const headerOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
+  const headerY = useTransform(scrollYProgress, [0, 0.1], [0, 20]);
+
+  // Mobile Scroll-Linked Animations (Plateau Snap Pattern)
+  const mobileCardX = useTransform(
+    scrollYProgress,
+    [0, 0.25, 0.35, 0.6, 0.7, 1],
+    ["0%", "0%", "-100%", "-100%", "-200%", "-200%"]
+  );
+
+  const mobileStage1Op = useTransform(scrollYProgress, [0, 0.3], [1, 0.2]);
+  const mobileStage2Op = useTransform(scrollYProgress, [0.25, 0.35, 0.65, 0.75], [0.2, 1, 1, 0.2]);
+  const mobileStage3Op = useTransform(scrollYProgress, [0.6, 0.7], [0.2, 1]);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (!isMobile) {
-      let nextStage = 1;
-      if (latest < 0.3) nextStage = 1;
-      else if (latest < 0.6) nextStage = 2;
-      else nextStage = 3;
-      if (nextStage !== activeStage) setActiveStage(nextStage);
-    }
+    let nextStage = 1;
+    if (latest < 0.33) nextStage = 1;
+    else if (latest < 0.66) nextStage = 2;
+    else nextStage = 3;
+    if (nextStage !== activeStage) setActiveStage(nextStage);
   });
 
-  // --- MOBILE EXPERIENCE ---
+  // --- MOBILE EXPERIENCE (Refined Scroll-Linked Arrangement) ---
   if (isMobile) {
     return (
-      <section className="py-12 bg-background relative overflow-hidden font-lexend transition-colors duration-500">
-        <div className="max-w-7xl mx-auto px-6 relative z-10 space-y-10">
+      <section ref={containerRef} className="relative h-[300vh] bg-background font-lexend overflow-visible">
+        <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-between pt-12 pb-10 overflow-hidden px-6">
           
-          {/* Mobile Header */}
-          <div className="space-y-3 text-left">
-            <div className="inline-flex items-center gap-2 text-primary font-black uppercase tracking-[0.4em] text-[9px]">
-              <div className="w-8 h-px bg-primary/40" />
-              <span>Bio-Process Sequence</span>
+          {/* Header (Premium Hierarchy) */}
+          <div className="space-y-1 text-center w-full shrink-0">
+            <div className="inline-flex items-center gap-2 text-primary font-black uppercase tracking-[0.4em] text-[8px]">
+              <div className="w-6 h-px bg-primary/40" />
+              <span>Bio-Cycle Sequence</span>
+              <div className="w-6 h-px bg-primary/40" />
             </div>
-            <h2 className="text-4xl font-black uppercase tracking-tighter text-foreground leading-none">
-              Biological <br />
-              <span className="premium-gradient-text italic font-normal">Sequence.</span>
+            <h2 className="text-3xl font-black uppercase tracking-tighter text-foreground leading-none">
+              Biological <span className="premium-gradient-text italic font-normal">Process.</span>
             </h2>
           </div>
 
-          {/* Phase Selector Tabs */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 no-scrollbar">
-            {[1, 2, 3].map((s) => (
-              <button
-                key={s}
-                onClick={() => setActiveStage(s)}
-                className={cn(
-                  "flex items-center gap-3 px-5 py-3 rounded-2xl border transition-all shrink-0",
-                  activeStage === s 
-                    ? "bg-primary text-white border-primary shadow-glow-sm" 
-                    : "bg-card text-muted-foreground border-border"
-                )}
-              >
-                <span className="font-mono text-[10px] font-black uppercase tracking-widest">P.0{s}</span>
-                <span className="text-[10px] font-bold uppercase tracking-tight">{stages[s-1].title.split(' ')[0]}</span>
-              </button>
-            ))}
-          </div>
+          {/* Center Visual (Occupies flexible space) */}
+          <div className="flex-1 flex items-center justify-center w-full relative z-20">
+            <div className="relative scale-[0.85]">
+              <div className="relative w-72 h-72 mx-auto">
+                <div className="absolute inset-0 z-30 pointer-events-none">
+                  <motion.div style={{ opacity: mobileStage1Op }} className="absolute -bottom-2 -left-6 text-left space-y-0.5">
+                    <div className="flex items-center gap-2">
+                      <div className={cn("w-1 h-1 rounded-full", activeStage === 1 ? "bg-primary animate-pulse" : "bg-muted-foreground/30")} />
+                      <span className="font-mono text-[7px] font-black uppercase tracking-widest text-foreground">Inlet_Vortex</span>
+                    </div>
+                    <div className="text-[6px] font-mono text-primary/60 font-bold uppercase tracking-tight pl-3">8.4 m/s // Active</div>
+                  </motion.div>
 
-          {/* Active Stage Card */}
-          <motion.div 
-            key={activeStage}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="bg-card border border-border rounded-[2.5rem] p-6 space-y-8 shadow-2xl relative overflow-hidden"
-          >
-            <div className="absolute top-0 right-0 p-6 opacity-[0.03] pointer-events-none">
-              <Search className="w-32 h-32" />
-            </div>
+                  <motion.div style={{ opacity: mobileStage2Op }} className="absolute top-1/2 -right-10 -translate-y-1/2 text-right space-y-0.5">
+                    <div className="flex items-center justify-end gap-2">
+                      <span className="font-mono text-[7px] font-black uppercase tracking-widest text-foreground">Bio_Scrubber</span>
+                      <div className={cn("w-1 h-1 rounded-full", activeStage === 2 ? "bg-sky-500 animate-pulse" : "bg-muted-foreground/30")} />
+                    </div>
+                    <div className="text-[6px] font-mono text-sky-500/60 font-bold uppercase tracking-tight pr-3">99.98% Efficiency</div>
+                  </motion.div>
 
-            <div className="relative z-10 space-y-6">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                  <span className="font-mono text-[8px] font-black tracking-[0.3em] text-primary uppercase">{stages[activeStage-1].subtitle}</span>
+                  <motion.div style={{ opacity: mobileStage3Op }} className="absolute -top-4 left-1/2 -translate-x-1/2 text-center space-y-0.5">
+                    <div className="flex items-center justify-center gap-2">
+                      <div className={cn("w-1 h-1 rounded-full", activeStage === 3 ? "bg-emerald-500 animate-pulse" : "bg-muted-foreground/30")} />
+                      <span className="font-mono text-[7px] font-black uppercase tracking-widest text-foreground">O2_Emission</span>
+                    </div>
+                    <div className="text-[6px] font-mono text-emerald-500/60 font-bold uppercase tracking-tight">99.8% Purity</div>
+                  </motion.div>
                 </div>
-                <div className="text-[7px] font-black text-muted-foreground uppercase tracking-widest border border-border px-2 py-1 rounded-md">Diagnostic_OK</div>
-              </div>
 
-              <div className="space-y-4">
-                <h3 className="text-3xl font-black uppercase tracking-tighter text-foreground leading-none">
-                  {stages[activeStage-1].title}
-                </h3>
-                <p className="text-[11px] text-muted-foreground font-medium leading-relaxed">
-                  {stages[activeStage-1].description}
-                </p>
+                <div className="absolute inset-0 rounded-full border-[0.5px] border-foreground/10 bg-white/5 backdrop-blur-2xl shadow-inner shadow-white/5" />
+                <div className="absolute inset-4 rounded-full overflow-hidden bg-background/40 border border-white/5">
+                  <motion.div 
+                    animate={{ scale: [1, 1.05, 1], rotate: [0, 360] }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    className="absolute inset-0 opacity-40"
+                  >
+                    <svg viewBox="0 0 200 200" className="w-full h-full">
+                      <path
+                        d={activeStage === 1 ? "M100,20 C140,20 180,60 180,100 C180,140 140,180 100,180 C60,180 20,140 20,100 C20,60 60,20 100,20" : activeStage === 2 ? "M100,30 C150,30 170,70 170,100 C170,130 150,170 100,170 C50,170 30,130 30,100 C30,70 50,30 100,30" : "M100,10 C160,10 190,60 190,100 C190,140 160,190 100,190 C40,190 10,140 10,100 C10,60 40,10 100,10"}
+                        fill={activeStage === 2 ? "#0EA5E9" : "#10B981"}
+                        className="transition-all duration-1000"
+                      />
+                    </svg>
+                  </motion.div>
+                </div>
+                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-white/10 via-transparent to-transparent pointer-events-none" />
               </div>
-
-              <div className="grid grid-cols-2 gap-4 pt-6 border-t border-border">
-                {stages[activeStage-1].data.map((item: any, idx: number) => (
-                  <div key={idx} className="space-y-1">
-                    <div className="text-[7px] font-black text-muted-foreground uppercase tracking-widest leading-none">{item.label}</div>
-                    <div className="text-xs font-mono font-bold text-foreground uppercase tracking-tight">{item.value}</div>
-                  </div>
-                ))}
-              </div>
+              <div className="absolute -inset-16 bg-primary/5 blur-[80px] rounded-full -z-10 animate-pulse" />
             </div>
-
-            {/* In-Card Mini Schematic */}
-            <div className="relative h-48 md:h-64 w-full flex items-center justify-center bg-background/40 rounded-[1.5rem] border border-border/50">
-               <div className="scale-50 md:scale-75 origin-center">
-                 <ReactorSchematic stage={activeStage} />
-               </div>
-            </div>
-          </motion.div>
-
-          <div className="flex items-center justify-center gap-2 text-[8px] font-black uppercase tracking-[0.4em] text-muted-foreground/40">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary/40 animate-pulse" />
-            Live_Telemetry Verification active
           </div>
+
+          {/* Carousel Cards (Consistent height) */}
+          <div className="w-full relative h-[300px] z-10 shrink-0 mb-4">
+            <motion.div 
+              style={{ x: mobileCardX }}
+              className="flex w-full h-full"
+            >
+              {stages.map((stage, i) => (
+                <div key={stage.id} className="w-full shrink-0 px-2">
+                  <div className="bg-card/40 border border-foreground/5 backdrop-blur-xl rounded-[3rem] p-8 space-y-4 shadow-2xl h-full flex flex-col justify-between">
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <span className="font-mono text-[9px] font-black tracking-[0.3em] text-primary uppercase">
+                          Phase_0{i + 1} // {stage.subtitle.split(' // ')[1]}
+                        </span>
+                        {activeStage === i+1 && <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]" />}
+                      </div>
+                      <h3 className="text-2xl font-black uppercase tracking-tighter text-foreground leading-none">
+                        {stage.title}
+                      </h3>
+                      <p className="text-[11px] text-muted-foreground font-medium leading-relaxed line-clamp-3">
+                        {stage.description}
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4 pt-5 border-t border-foreground/5">
+                      {stage.data.map((item: any, idx: number) => (
+                        <div key={idx} className="space-y-0.5">
+                          <div className="text-[7px] font-black text-muted-foreground/40 uppercase tracking-widest leading-none">{item.label}</div>
+                          <div className="text-xs font-mono font-bold text-foreground uppercase tracking-tight">{item.value}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Footer UI (Grouped at bottom) */}
+          <div className="flex flex-col items-center gap-3 w-full shrink-0">
+             <div className="flex items-center gap-4">
+                {[1, 2, 3].map((s) => (
+                  <div key={s} className={cn("w-1 h-1 rounded-full transition-all duration-500", activeStage === s ? "bg-primary scale-150 shadow-[0_0_8px_var(--primary)]" : "bg-foreground/10")} />
+                ))}
+             </div>
+             <div className="w-20 h-px bg-foreground/5 rounded-full overflow-hidden relative">
+               <motion.div style={{ scaleX: smoothProgress, transformOrigin: "left" }} className="absolute inset-0 bg-primary" />
+             </div>
+             <div className="text-[7px] font-black uppercase tracking-[0.3em] text-muted-foreground/30">
+               Atmospheric sync active
+             </div>
+          </div>
+
         </div>
       </section>
     );
@@ -391,8 +545,8 @@ export default function HowItWorksSection() {
           
           <motion.div 
             style={{ 
-              opacity: useTransform(scrollYProgress, [0, 0.1], [1, 0]),
-              y: useTransform(scrollYProgress, [0, 0.1], [0, 20])
+              opacity: headerOpacity,
+              y: headerY
             }}
             className="text-left mb-8 space-y-4 shrink-0"
           >

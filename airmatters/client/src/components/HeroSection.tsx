@@ -45,13 +45,13 @@ export default function HeroSection() {
   const sectionScale = useTransform(smoothProgress, [0.85, 1], [1, 0.92]);
   const sectionOpacity = useTransform(smoothProgress, [0.85, 1], [1, 0]);
 
+  // Mobile specific mappings (moved to top level to comply with Rules of Hooks)
+  const imageScale = useTransform(smoothProgress, [0, 0.4], [1, 1.05]);
+  const infoOpacity = useTransform(smoothProgress, [0, 0.2], [0, 1]);
+  const cardRevealOp = useTransform(smoothProgress, [0.2, 0.4], [0, 1]);
+
   // --- MOBILE EXPERIENCE ---
   if (isMobile) {
-    // Professional Industrial Animation Mappings
-    const imageScale = useTransform(smoothProgress, [0, 0.4], [1, 1.05]);
-    const infoOpacity = useTransform(smoothProgress, [0, 0.2], [0, 1]);
-    const cardRevealOp = useTransform(smoothProgress, [0.2, 0.4], [0, 1]);
-    
     return (
       <section ref={containerRef} className="relative h-[220vh] bg-background font-lexend overflow-visible transition-colors duration-500">
         <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-start pt-20 px-6 overflow-hidden">
