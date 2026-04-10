@@ -38,7 +38,6 @@ function PageWrapper({ children }: { children: React.ReactNode }) {
       initial="initial"
       animate="animate"
       exit="exit"
-      style={{ willChange: "opacity, transform" }}
     >
       {children}
     </motion.div>

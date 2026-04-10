@@ -1,95 +1,20 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Globe, Sprout, Target, ArrowRight, Sparkles, TrendingUp, Calendar, MapPin, CheckCircle2, Leaf, Lightbulb, Users, Zap, ShieldCheck } from "lucide-react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { useRef } from "react";
 import { cn } from "@/lib/utils";
-import MicroalgaeGL from "@/components/3d/MicroalgaeGL";
+import VisionHero from "@/components/VisionHero";
 import Footer from "@/components/Footer";
 
 export default function Vision() {
-  const heroRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
-
   return (
     <div className="min-h-screen bg-transparent overflow-hidden">
       
-      {/* Hero Section - Card Contained Parallax */}
-      <section ref={heroRef} className="pt-28 pb-12 px-4 md:px-8">
-        <div className="max-w-[100rem] 3xl:max-w-[112.5rem] 4xl:max-w-[125rem] mx-auto relative h-[75vh] md:h-[80vh] rounded-[2.5rem] overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.3)] border border-white/20 bg-background/5 backdrop-blur-md">
-          {/* Voronoi GLSL Microalgae Background */}
-          <div className="absolute inset-0 z-0">
-            <MicroalgaeGL />
-          </div>
+      {/* Premium Vision Hero */}
+      <VisionHero />
 
-          {/* Parallax Background — overlaid above shader */}
-          <motion.div 
-            style={{ y, opacity }}
-            className="absolute inset-0 z-[1]"
-          >
-            <div 
-              className="absolute inset-0 bg-cover bg-center scale-110"
-              style={{ backgroundImage: "url('/images/Picture2.jpg')", opacity: 0.25 }}
-            />
-            <div className="absolute inset-0 bg-black/50" />
-          </motion.div>
-          
-          <div className="relative z-10 h-full flex flex-col justify-center px-8 md:px-20 max-w-4xl">
-                        <motion.div 
-                          initial={{ opacity: 0, x: -30 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.8 }}
-                          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 backdrop-blur-sm border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-8 w-fit"
-                        >
-                          <Sparkles className="w-4 h-4" />
-                          <span>The Future We're Building</span>
-                        </motion.div>
-            
-                        <motion.h1 
-                          initial={{ opacity: 0, x: -30 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.8, delay: 0.2 }}
-                          className="text-5xl sm:text-7xl md:text-8xl font-bold tracking-tighter text-white mb-6 font-display leading-[1.1] drop-shadow-2xl"
-                        >
-                          Revolutionizing <br />
-                          Urban Life.
-                        </motion.h1>
-            
-                        <motion.p 
-                          initial={{ opacity: 0, x: -30 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.8, delay: 0.4 }}
-                          className="text-lg md:text-2xl font-light text-white/90 mb-10 leading-relaxed max-w-2xl drop-shadow-md"
-                        >
-                          Our vision is to address air and water pollution simultaneously through a new, integrated biological infrastructure.
-                        </motion.p>
-            
-                        <motion.div 
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.8, delay: 0.6 }}
-                          className="flex flex-col sm:flex-row gap-4"
-                        >
-                          <Link href="/about">
-                            <Button size="lg" className="h-14 md:h-16 px-10 text-lg font-bold rounded-full bg-primary hover:bg-primary/90 text-white shadow-xl transition-all transform hover:-translate-y-1">
-                              Our Story
-                              <ArrowRight className="ml-2 w-5 h-5" />
-                            </Button>
-                          </Link>
-                          <Link href="/how-it-works">
-                            <Button size="lg" className="h-14 md:h-16 px-10 text-lg font-bold rounded-full backdrop-blur-sm bg-white/20 border-white/10 text-white hover:bg-white/30 transition-all">
-                              The Science
-                            </Button>
-                          </Link>
-                        </motion.div>          </div>
-        </div>
-      </section>
+      {/* Impact by the Numbers - Redesigned */}
 
       {/* Impact by the Numbers - Redesigned */}
       <section className="py-12 bg-transparent relative z-10 -mt-20">

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&family=Syne:wght@700;800&family=Lexend:wght@300;400;500;600;700;800;900&display=swap');
+
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
@@ -7,8 +9,6 @@
    Core: #142c16 · #23572a · #2c7d3b · #56B452 · #ffffff
    Accents: #0EA5E9 (Electric Blue) · #E0F2FE (Mist Blue)
    ═══════════════════════════════════════════════════════════ */
-
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&family=Syne:wght@700;800&family=Lexend:wght@300;400;500;600;700;800;900&display=swap');
 
 /* Raw hex values for JavaScript / Three.js consumption */
 :root {

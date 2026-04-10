@@ -26,7 +26,7 @@ export default function SpecimenLens({ image, label, className, scrollProgress, 
           <img 
             src={image} 
             alt={label} 
-            className="w-full h-full object-cover scale-150 group-hover:scale-125 transition-transform duration-[2s] ease-out"
+            className="w-full h-full object-cover scale-150 group-hover:scale-125 transition-transform duration-&lsqb;2000ms&rsqb; ease-out"
           />
           {/* Glass Overlay */}
           <div className="absolute inset-0 bg-primary/10 backdrop-blur-[2px] mix-blend-overlay" />

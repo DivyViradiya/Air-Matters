@@ -30,19 +30,19 @@ export default function Navbar() {
   }, []);
 
   const links = [
-    { href: "/", label: "Origin" },
+    { href: "/", label: "Systems" },
     { 
-      label: "Bio-Systems",
+      label: "Solutions",
       children: [
         { href: "/air-matters", label: "Biological Purification", description: "Our core technology transforming CO2 into oxygen." },
-        { href: "/carbon-credits", label: "Carbon Protocol", description: "Measuring and monetizing your environmental impact." },
-        { href: "/nutraceuticals", label: "Biomass Yield", description: "High-value nutritional byproducts from our systems." },
+        { href: "/carbon-credits", label: "Protocol & Credits", description: "Measuring and monetizing your environmental impact." },
+        { href: "/nutraceuticals", label: "Yield Systems", description: "High-value nutritional byproducts from our networks." },
       ]
     },
-    { href: "/products", label: "Specimens" },
-    { href: "/vision", label: "Future" },
-    { href: "/how-it-works", label: "Sequence" },
-    { href: "/about", label: "Network" },
+    { href: "/products", label: "Products" },
+    { href: "/vision", label: "Vision" },
+    { href: "/how-it-works", label: "Engineering" },
+    { href: "/about", label: "About" },
   ];
 
   return (
@@ -76,10 +76,10 @@ export default function Navbar() {
         {/* Center: HUD Navigation Capsule (Hidden on mobile) */}
         <div className="hidden lg:col-span-6 lg:flex justify-center">
           <div className={cn(
-            "px-2 py-1.5 rounded-full border-2 transition-all duration-500 backdrop-blur-2xl flex items-center gap-1",
+            "px-2 py-1.5 rounded-full border transition-all duration-500 flex items-center gap-1",
             isScrolled 
-              ? "bg-white/90 dark:bg-black/90 border-primary/40 shadow-[0_20px_40px_-10px_rgba(86,180,82,0.3)]" 
-              : "bg-white/40 dark:bg-black/40 border-primary/10 shadow-lg"
+              ? "bg-background shadow-2xl border-primary/20" 
+              : "bg-background/40 backdrop-blur-3xl border-border/10 shadow-sm"
           )}>
             <div className="flex items-center">
               {links.map((link) => {
@@ -91,28 +91,28 @@ export default function Navbar() {
                       <NavigationMenuList>
                         <NavigationMenuItem>
                           <NavigationMenuTrigger className={cn(
-                            "bg-transparent hover:bg-primary/10 px-5 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] transition-all h-10 border-none outline-none focus:bg-primary/5",
-                            isActive ? "text-primary bg-primary/5 shadow-[inset_0_0_10px_rgba(86,180,82,0.1)]" : "text-foreground/70"
+                            "bg-transparent hover:bg-primary/5 px-5 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] transition-all h-10 border-none outline-none focus:bg-primary/5",
+                            isActive ? "text-primary bg-primary/5" : "text-foreground/70"
                           )}>
                             {link.label}
                           </NavigationMenuTrigger>
                           <NavigationMenuContent>
-                            <ul className="bg-background/95 backdrop-blur-2xl rounded-3xl p-6 shadow-[0_40px_80px_rgba(0,0,0,0.4)] w-96 mt-4 grid grid-cols-1 gap-4 border-2 border-primary/20">
+                            <ul className="bg-background rounded-[2rem] p-4 shadow-2xl w-80 mt-4 grid grid-cols-1 gap-1 border border-border/40">
                               {link.children.map((child) => (
                                 <li key={child.label}>
                                   <Link href={child.href}>
                                     <NavigationMenuLink
                                       asChild
                                       className={cn(
-                                        "block w-full cursor-pointer px-6 py-5 rounded-2xl border-2 border-transparent transition-all group/item",
+                                        "block w-full cursor-pointer px-5 py-4 rounded-xl border border-transparent transition-all group/item",
                                         location === child.href
-                                          ? "text-primary border-primary/30 bg-primary/5"
-                                          : "text-foreground/70 hover:border-primary/20 hover:bg-primary/5 hover:text-primary"
+                                          ? "text-primary border-primary/10 bg-primary/5"
+                                          : "text-foreground/70 hover:border-border/10 hover:bg-muted/50 hover:text-primary"
                                       )}
                                     >
                                       <div>
-                                        <div className="text-[11px] font-black tracking-widest mb-1.5 uppercase group-hover/item:translate-x-1 transition-transform">{child.label}</div>
-                                        <div className="text-[10px] leading-relaxed text-muted-foreground font-medium opacity-60">{child.description}</div>
+                                        <div className="text-[10px] font-black tracking-widest mb-1 uppercase group-hover/item:translate-x-1 transition-transform">{child.label}</div>
+                                        <div className="text-[9px] leading-relaxed text-muted-foreground font-medium opacity-60">{child.description}</div>
                                       </div>
                                     </NavigationMenuLink>
                                   </Link>
@@ -133,7 +133,7 @@ export default function Navbar() {
                     className={cn(
                       "px-5 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] transition-all h-10 flex items-center justify-center whitespace-nowrap",
                       isActive 
-                        ? "text-primary bg-primary/5 shadow-[inset_0_0_10px_rgba(86,180,82,0.1)]" 
+                        ? "text-primary bg-primary/5 shadow-[inset_0_0_10px_rgba(86,180,82,0.05)]" 
                         : "text-foreground/70 hover:text-primary hover:bg-primary/5"
                     )}
                   >
